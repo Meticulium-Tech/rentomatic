@@ -1,4 +1,4 @@
-package com.example.l_tech
+package com.example.rentomatic
 
 import io.flutter.embedding.android.FlutterActivity
 

@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "1044146580991",
+    "project_id": "rent-o-matic-d67f8",
+    "storage_bucket": "rent-o-matic-d67f8.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:1044146580991:android:f3b0fb978fe4bd99284bca",
+        "android_client_info": {
+          "package_name": "com.l_tech.rentomatic"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "1044146580991-atr9on3m7e87ltrk9ehpiu2ctmcqodob.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAARq_xE7vuA8D35VvrSk0ndI4ou9iiu1E"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "1044146580991-atr9on3m7e87ltrk9ehpiu2ctmcqodob.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

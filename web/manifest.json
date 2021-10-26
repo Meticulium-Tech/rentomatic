@@ -1,6 +1,6 @@
 {
-    "name": "l_tech",
-    "short_name": "l_tech",
+    "name": "rentomatic",
+    "short_name": "rentomatic",
     "start_url": ".",
     "display": "standalone",
     "background_color": "#0175C2",

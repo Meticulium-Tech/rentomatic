@@ -1,4 +1,4 @@
-# l_tech
+# rentomatic
 
 A new Flutter project.
 
