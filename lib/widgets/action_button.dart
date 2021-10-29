@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:get/get_rx/src/rx_typedefs/rx_typedefs.dart';
 import 'package:rentomatic/utils/utils.dart';
 
 class ActionButton extends StatelessWidget {
@@ -19,14 +20,13 @@ class ActionButton extends StatelessWidget {
     return GestureDetector(
       onTap: () => callback,
       child: Container(
-          height: 60.0,
-          width: 500,
+         
           decoration: BoxDecoration(
             borderRadius: BorderRadius.circular(20.0),
             border: Border.all(color: color, width: 2.0),
             color: Palette.secondary,
           ),
-          //   gradient: Palette.gradientWith(color)),
+         
           child: Padding(
             padding: const EdgeInsets.all(8.0),
             child: Row(
@@ -43,7 +43,7 @@ class ActionButton extends StatelessWidget {
                       fontWeight: FontWeight.bold),
                 ),
                 const SizedBox(width: 3.0),
-                icon ?? SizedBox.shrink(),
+                icon ?? const SizedBox.shrink(),
               ],
             ),
           )),

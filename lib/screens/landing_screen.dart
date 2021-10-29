@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:l_tech/utils/utils.dart';
+import 'package:rentomatic/utils/utils.dart';
 import 'package:rentomatic/widgets/widgets.dart';
 import 'package:line_icons/line_icons.dart';
 
@@ -8,8 +8,7 @@ class LandingScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final nameEmailController = TextEditingController();
-    final passwordController = TextEditingController();
+   
     return Scaffold(
       backgroundColor: Palette.secondary,
       body: Center(

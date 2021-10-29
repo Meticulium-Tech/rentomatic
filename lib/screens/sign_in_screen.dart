@@ -1,17 +1,22 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_hooks/flutter_hooks.dart';
+import 'package:fluttertoast/fluttertoast.dart';
 import 'package:get/get.dart';
+import 'package:hooks_riverpod/hooks_riverpod.dart';
+import 'package:rentomatic/providers/auth_provider.dart';
 import 'package:rentomatic/screens/screens.dart';
 import 'package:rentomatic/utils/utils.dart';
 import 'package:rentomatic/widgets/widgets.dart';
 import 'package:line_icons/line_icons.dart';
 
-class SignInScreen extends StatelessWidget {
+class SignInScreen extends HookWidget {
   const SignInScreen({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
     final nameEmailController = TextEditingController();
     final passwordController = TextEditingController();
+    final auth = useProvider(authProvider);
     return Scaffold(
       backgroundColor: Palette.secondary,
       body: Padding(
@@ -78,15 +83,29 @@ class SignInScreen extends StatelessWidget {
                             icon: Icons.password),
                         ActionButton(
                             label: "Log In",
-                            callback: () {},
+                            callback: () {
+                              auth
+                                  .loginUser(
+                                      mail: nameEmailController.text,
+                                      pass: passwordController.text)
+                                  .onError((error, stackTrace) {
+                                Fluttertoast.showToast(
+                                    msg: "something went wrong");
+                                error.printError();
+                              
+                                
+                              });
+                              Get.to((ref) => const HomeScreen());
+                            },
                             color: Palette.secondary),
+                            SizedBox(height: 30,),
                         Row(children: [
                           const Text("Are You not having an account? "),
                           GestureDetector(
                             onTap: () {
                               Get.to(() => const SignUpScreen());
                             },
-                            child: const Text("Sign Up Now"),
+                            child:  Text("Sign Up Now", style :Styles.body ),
                           ),
                         ]),
                       ]),

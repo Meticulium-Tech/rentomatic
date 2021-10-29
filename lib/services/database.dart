@@ -1,4 +1,5 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:rentomatic/controllers/controllers.dart';
 import 'package:rentomatic/models/models.dart';
 import 'package:rentomatic/providers/providers.dart';
 import 'package:rentomatic/utils/utils.dart';
@@ -18,13 +19,13 @@ class Database {
   //     // }
   //     ) async {
   //   print("this is the subject category ${_read(quizSubjectProvider).state}");
-  //   print("this the level of student ${_read(studentControllerProvider.notifier).state.level}");
+  //   print("this the level of user ${_read(userControllerProvider.notifier).state.level}");
   //   print("finally the number question ${_read(quizQuestionNumberProvider)}");
   //   await _firestore
   //       .collection('questions')
   //       .where('category', isEqualTo: _read(quizSubjectProvider).state)
   //       .where('level',
-  //           isEqualTo: _read(studentControllerProvider.notifier).state.level)
+  //           isEqualTo: _read(userControllerProvider.notifier).state.level)
   //       .limit(_read(quizQuestionNumberProvider).state)
   //       .get()
   //       .then((value) async {
@@ -67,26 +68,24 @@ class Database {
   //   return [];
   // }
 
-  Future<bool> createUser(
-      {required String id, required Student student}) async {
+  Future<bool> createUser({required String id, required Users user}) async {
     var _id = id;
+    print('successfully entered the create user method');
     try {
-      await _firestore.collection("students").doc(id).set({
-        'id': student.id,
-        'names': student.names,
-        'section': student.section,
-        'email': student.email,
-        'phone': student.phone,
-        'school': student.school,
-        'level': student.level,
-        'avatar': student.avatar,
-        'achievements': student.achievements,
-        'subjects': student.subjects,
-        'prenium': student.prenium,
-        'birthdate': student.birthdate,
+      await _firestore.collection("users").doc(id).set({
+        'Id': user.Id,
+        'firstName': user.firstName,
+        'lastName': user.lastName,
+        'password': user.password,
+        'email': user.email,
+        'phoneNumber': user.phoneNumber,
+        'location': user.location,
+        'profilepic': user.profilepic,
+        'birthday': Timestamp.fromMillisecondsSinceEpoch(user.birthday.millisecondsSinceEpoch),
       }).then((response) => getUser(_id));
       return true;
     } on FirebaseException catch (err) {
+      print('the erro found while creating user ${err.message}');
       Fluttertoast.showToast(
           msg: "Error while creating user: ${err.message}..");
       return false;
@@ -95,10 +94,10 @@ class Database {
 
   Future<bool> getUser(String uid) async {
     try {
-      await _firestore.collection('students').doc(uid).get().then((doc) {
-        Student _student = Student.fromDocumentSnapshot(doc.data());
-        _read(studentControllerProvider.notifier).student = _student;
-        print(_read(studentControllerProvider.notifier).student.email);
+      await _firestore.collection('users').doc(uid).get().then((doc) {
+        Users _user = Users.fromMap(doc.data());
+        _read(userControllerProvider.notifier).users = _user;
+        print(_read(userControllerProvider.notifier).users.email);
       });
       return true;
     } on FirebaseException catch (err) {
