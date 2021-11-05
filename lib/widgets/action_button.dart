@@ -6,7 +6,7 @@ class ActionButton extends StatelessWidget {
   final String label;
   final dynamic icon;
   final Color color;
-  final Function callback;
+  final Callback callback;
   const ActionButton(
       {Key? key,
       required this.label,
@@ -18,7 +18,7 @@ class ActionButton extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return GestureDetector(
-      onTap: () => callback,
+      onTap:  callback,
       child: Container(
          
           decoration: BoxDecoration(

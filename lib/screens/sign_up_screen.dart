@@ -1,3 +1,4 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_hooks/flutter_hooks.dart';
 import 'package:fluttertoast/fluttertoast.dart';
@@ -26,11 +27,11 @@ class SignUpScreen extends HookWidget {
 
     return Scaffold(
       backgroundColor: Palette.secondary,
-      body: Padding(
-        padding: const EdgeInsets.only(
-          top: 40,
-        ),
-        child: Expanded(
+      body: SingleChildScrollView(
+        child: Padding(
+          padding: const EdgeInsets.only(
+            top: 40,
+          ),
           child: Column(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             crossAxisAlignment: CrossAxisAlignment.start,
@@ -52,8 +53,8 @@ class SignUpScreen extends HookWidget {
                 child: Container(
                   width: double.infinity,
                   height: 600,
-                  padding:
-                      const EdgeInsets.symmetric(horizontal: 10, vertical: 10),
+                  padding: const EdgeInsets.symmetric(
+                      horizontal: 10, vertical: 10),
                   decoration: BoxDecoration(
                     borderRadius:
                         const BorderRadius.vertical(top: Radius.circular(30)),
@@ -129,24 +130,23 @@ class SignUpScreen extends HookWidget {
                       ActionButton(
                           label: "Welcome",
                           callback: () {
-                            auth
-                                .signupUser(
-                                    mail: email.text,
-                                    pass: passwordController.text,
-                                    user: Users(
-                                        firstName: firstName.text,
-                                        lastName: lastName.text,
-                                        email: email.text,
-                                        location: location.text,
-                                        phoneNumber: phoneNumber.text,
-                                        birthday: DateTime.now(),
-                                        password: passwordController.text))
-                                .onError((error, stackTrace) {
-                              Fluttertoast.showToast(
-                                  msg: "something went wrong");
-                              error.printError();
-                            });
-                            Get.to((ref) => const HomeScreen());
+                            try {
+                              auth.signupUser(
+                                  mail: email.text,
+                                  pass: passwordController.text,
+                                  user: Users(
+                                      firstName: firstName.text,
+                                      lastName: lastName.text,
+                                      email: email.text,
+                                      location: location.text,
+                                      phoneNumber: phoneNumber.text,
+                                      birthday: DateTime.now(),
+                                      password: passwordController.text));
+                            } on FirebaseException catch (e) {
+                              e.printError();
+                            } finally {
+                              Get.to(() => const HomeScreen());
+                            }
                           },
                           color: Palette.secondary),
                       Row(
