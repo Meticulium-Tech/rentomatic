@@ -9,15 +9,14 @@ class Styles {
     fontWeight: FontWeight.bold,
   );
 
-static TextStyle title2 = GoogleFonts.arvo(
-    color: Palette.secondary,
-    fontSize: 30,
+  static TextStyle title2 = GoogleFonts.arvo(
+    color: Palette.light,
+    fontSize: 40,
     fontWeight: FontWeight.bold,
   );
 
-
   static TextStyle body = GoogleFonts.abel(
     color: Palette.secondary,
-    fontSize: 10,
+    fontSize: 20,
   );
 }

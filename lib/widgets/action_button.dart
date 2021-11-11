@@ -18,15 +18,13 @@ class ActionButton extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return GestureDetector(
-      onTap:  callback,
+      onTap: callback,
       child: Container(
-         
           decoration: BoxDecoration(
             borderRadius: BorderRadius.circular(20.0),
             border: Border.all(color: color, width: 2.0),
             color: Palette.secondary,
           ),
-         
           child: Padding(
             padding: const EdgeInsets.all(8.0),
             child: Row(
